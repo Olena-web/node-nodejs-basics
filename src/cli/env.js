@@ -1,12 +1,14 @@
-import { env } from 'process';
+import { env } from 'node:process';
+
 const parseEnv = () => {
-    const result = Object.keys(env).filter(key => key.startsWith('RSS_')).map(key => {
-        console.log(key + ' = ' + env[key]);
-        return {
-            key: key,
-            value: env[key]
-        };
+    Object.keys(process.env).forEach((item) => {
+        if (item.startsWith('RSS_')) {
+            console.log(`${item}=${env[item]}`);
+        }
     });
+};
 
-
-    parseEnv();
+parseEnv();
+// for Powershell terminal run commands:
+// $env:RSS_name="value"; node src/cli/env
+// $env:RSS_name1="value1"; $env:RSS_name2="value2"; node src/cli/env

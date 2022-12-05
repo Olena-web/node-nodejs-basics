@@ -1,7 +1,11 @@
+import { argv } from 'node:process';
+
 const parseArgs = () => {
-    const flags = process.argv.slice(2);
-    console.log(flags[0].slice(2) + " is " + flags[1]);
-    console.log(flags[2].slice(2) + " is " + flags[3]);
+    argv.forEach((arg, index) => {
+        if (arg.startsWith('--')) {
+            console.log(`${arg.substring(2)} is ${argv[index + 1]}`);
+        }
+    });
 };
 
 parseArgs();
