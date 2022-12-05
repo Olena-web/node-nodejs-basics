@@ -1,5 +1,12 @@
-const transform = async () => {
-    // Write your code here 
-};
+export const transform = async () => {
 
-await transform();
+    const { stdin, stdout } = process;
+  
+    stdout.write('Enter text:\n');
+    stdin.on('data', data => {
+      const reverseData = data.toString().split('').reverse().join('');
+      stdout.write(`Reverse: ${reverseData}`);
+      //process.exit();
+    });
+  };
+  transform();
